@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio + Tanya Codex</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- PROFIL (diisi dari backend /profile) -->
+      <header class="card header">
+        <img class="avatar" src="./image/logo_metaforsa.png" alt="Foto Profil" />
+        <div>
+          <h1 id="name" class="name">Nama Kamu</h1>
+          <p id="role" class="muted">Frontend Learner</p>
+          <p id="bio" class="muted">Belajar HTML + CSS, lalu integrasi FE ↔ BE.</p>
+        </div>
+      </header>
+
+      <!-- LINKS (diisi dari backend /profile) -->
+      <section class="card">
+        <h2>Links</h2>
+        <div id="links" class="grid links"></div>
+      </section>
+
+      <!-- SKILLS (diisi dari backend /profile) -->
+      <section class="card">
+        <h2>Skills</h2>
+        <div id="skills" class="grid skills"></div>
+      </section>
+
+      <!-- TANYA CODEX (CHAT) -->
+      <section class="card">
+        <h2>Tanya Codex</h2>
+
+        <div id="chat-box" class="chat-box">
+          <div class="msg bot">Halo! Tulis pertanyaanmu </div>
+        </div>
+
+        <div class="row">
+          <input id="user-input" class="input" type="text" placeholder="Tulis pertanyaan..." />
+          <button id="send-btn" class="btn">Kirim</button>
+        </div>
+      </section>
+
+      <!-- TINGGALKAN PESAN (GUESTBOOK) -->
+      <section class="card">
+        <h2>Tinggalkan Pesan</h2>
+
+        <form id="guestbook-form" class="form">
+          <input id="gb-name" class="input" type="text" placeholder="Nama" required />
+          <textarea id="gb-message" class="input textarea" placeholder="Pesan..." required></textarea>
+          <button class="btn green" type="submit">Kirim Pesan</button>
+        </form>
+
+        <div id="messages-list" class="messages"></div>
+      </section>
+
+      <footer class="footer muted">
+        <small>© 2026 Dibuat dengan ❤️ di Codex </small>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
