@@ -53,6 +53,8 @@ app.get("/profile", (req, res) => res.json({ status: true, statusCode: 200, data
 app.get("/chat", async (req, res) => {
   try {
     const prompt = req.query.prompt || "Halo!";
+
+    // fallback kalau apiKey belum ada
     if (!process.env.SECRET_KEY_GEMINI_API) {
       return res.status(200).json({
         status: "success",
@@ -68,18 +70,25 @@ app.get("/chat", async (req, res) => {
     const result = await genAI.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
+      config: {
+        systemInstruction:
+          "Kamu adalah CODEX Bot, yang membantu pengunjung website untuk memberikan informasi dan menjawab pertanyaan mereka. Jika ada yang bertanya apa itu codex, codex itu chat bot yang dibuat oleh himpunan mahasiswa UKRI menggunakan API dari gemini. Dan codex bot ini dibuat untuk himpunan mahasiswa informatika (HMIF) di universitas kebangsaan republik indonesia atau UKRI kamu bisa lihat disini untuk webiste ukri https://ukri.ac.id/ lokasi ukri ada di Jln. Terusan Halimun No.37 (Pelajar Pejuang 45) Bandung 40263, Jawa Barat",
+      },
     });
+
+    const response = result.text;
 
     res.status(200).json({
       status: "success",
       message: {
         id: Date.now(),
         role: "assistant",
-        content: result.text,
+        content: response,
         timestamp: new Date().toISOString(),
       },
     });
-  } catch (e) {
+  } catch (error) {
+    console.log(" ~ error:", error);
     res.status(500).json({ status: "error", message: "Terjadi kesalahan pada server AI" });
   }
 });
